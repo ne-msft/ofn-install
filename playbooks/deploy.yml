@@ -29,7 +29,7 @@
           msg: '`{{ git_version }}` deployed to {{ inventory_hostname }}'
           channel: "#devops-notifications"
           username: "ansible executed by {{ lookup('env','USER') }}"
-        when: inventory_hostname not in groups['local']
+        when: inventory_hostname not in groups['local'] and 0==1
 
       - name: Notify datadog
         uri:
@@ -54,7 +54,7 @@
             msg: 'Deployment FAILED for {{ inventory_hostname }}'
             channel: "#devops-notifications"
             username: "ansible executed by {{ lookup('env','USER') }}"
-          when: inventory_hostname not in groups['local']
+          when: inventory_hostname not in groups['local'] and 0==1
 
         - debug:
             msg: Deployment failed

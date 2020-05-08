@@ -109,7 +109,7 @@
         msg: '{{ inventory_hostname }} provisioned'
         channel: "#devops-notifications"
         username: "ansible executed by {{ lookup('env','USER') }}"
-      when: inventory_hostname not in groups['local']
+      when: inventory_hostname not in groups['local'] and 0==1
 
     - name: notify datadog
       uri:
