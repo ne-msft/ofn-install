@@ -24,6 +24,7 @@
       - name: "{{ db_user }}"
         password: "{{ db_password }}"
         role_attr_flags: "{{ db_user_roles }}"
+  when: False
 
 - include_role:
     name: geerlingguy.postgresql
@@ -37,3 +38,5 @@
         login_password: "{{ db_password }}"
         lc_collate: "{{ postgres_encoding }}"
         lc_ctype: "{{ postgres_encoding }}"
+  when: False
+   
