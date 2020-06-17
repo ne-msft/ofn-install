@@ -67,6 +67,7 @@ test_db: ofn_test
 db_user: ofn_user
 db_host: localhost
 postgres_encoding: en_US.utf8
+postgresql_service_enabled: "{{ db_host == 'localhost' }}"
 
 #----------------------------------------------------------------------
 # Postgresql variables
