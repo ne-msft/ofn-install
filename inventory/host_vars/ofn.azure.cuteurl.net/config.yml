@@ -8,6 +8,8 @@ admin_email: nierfurt@microsoft.com
 
 mail_domain: ofn.azure.cuteurl.com
 
+nginx_enable_brotli: False
+
 # Optional list of subdomains to register in letsencrypt certificate
 # Defaults to {{ domain }} if list is undefined
 #
