@@ -205,3 +205,10 @@ de
 be
 za
 br
+azure
+
+[azure-prod]
+ofn.azure.cuteurl.net
+
+[azure:children]
+azure-prod
