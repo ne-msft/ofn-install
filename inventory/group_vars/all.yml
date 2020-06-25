@@ -203,10 +203,13 @@ core_devs:
 app_root: "{{ current_path }}"
 
 nginx_official_repo: True
+nginx_enable_brotli: True
 
-nginx_extra_root_params:
+nginx_brotli_libraries:
   - load_module modules/ngx_http_brotli_filter_module.so
   - load_module modules/ngx_http_brotli_static_module.so
+
+nginx_extra_root_params: "{{ nginx_enable_brotli | ternary (nginx_brotli_libraries, [], []) }}"
 
 nginx_http_params:
   - sendfile "on"
@@ -272,8 +275,10 @@ nginx_sites:
       gzip_types text/css text/javascript text/plain application/javascript application/x-javascript application/json;
       gzip_disable "msie6";
 
+      {% if nginx_enable_brotli %}
       brotli on;
       brotli_types text/css text/javascript text/plain application/javascript application/x-javascript application/json;
+      {% endif %}
 
       try_files $uri/index.html $uri @unicorn;
       location @unicorn {
@@ -292,7 +297,9 @@ nginx_sites:
 
       location ~ ^/(assets)/ {
         gzip_static on;
+        {% if nginx_enable_brotli %}
         brotli_static on;
+        {% endif %}
         expires max;
         add_header Cache-Control public;
       }

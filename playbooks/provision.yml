@@ -84,6 +84,7 @@
 
     - role: brotli_nginx
       tags: brotli
+      when: nginx_enable_brotli
 
     - role: jdauphant.nginx
       become: yes
